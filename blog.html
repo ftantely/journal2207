@@ -1,0 +1,258 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Blog — The Journal</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+	<style>
+		*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+		
+		:root {
+			--ink: #1a1612;
+			--cream: #f5f0e8;
+			--rust: #c0533a;
+			--sage: #7a9e87;
+			--tan: #d9c9b0;
+		}
+		
+		body {
+			font-family: 'DM Sans', sans-serif;
+			background: var(--cream);
+			color: var(--ink);
+			min-height: 100vh;
+		}
+		
+		nav {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			padding: 1.5rem 4rem;
+			border-bottom: 1px solid var(--tan);
+		}
+		
+		.logo {
+			font-family: 'Playfair Display', serif;
+			font-size: 1.4rem;
+			font-weight: 700;
+			color: var(--ink);
+			text-decoration: none;
+		}
+		
+		nav ul {
+			list-style: none;
+			display: flex;
+			gap: 2.5rem;
+		}
+		
+		nav a {
+			text-decoration: none;
+			color: var(--ink);
+			font-size: 0.9rem;
+			font-weight: 500;
+			letter-spacing: 0.04em;
+			opacity: 0.7;
+			transition: opacity 0.2s;
+		}
+		
+		nav a:hover, nav a.active { opacity: 1; }
+		nav a.active { color: var(--rust); }
+		
+		/* PAGE HEADER */
+		.page-header {
+			padding: 4rem 4rem 3rem;
+			border-bottom: 1px solid var(--tan);
+			display: flex;
+			align-items: flex-end;
+			gap: 2rem;
+		}
+		
+		.page-header h1 {
+			font-family: 'Playfair Display', serif;
+			font-size: clamp(2.5rem, 4vw, 3.5rem);
+			line-height: 1.1;
+		}
+		
+		.post-count {
+			font-size: 0.8rem;
+			letter-spacing: 0.12em;
+			text-transform: uppercase;
+			color: var(--sage);
+			font-weight: 500;
+			padding-bottom: 0.5rem;
+		}
+		
+		/* POSTS LIST */
+		.posts-list {
+			padding: 3rem 4rem 5rem;
+			max-width: 860px;
+		}
+		
+		.post-item {
+			display: grid;
+			grid-template-columns: 120px 1fr;
+			gap: 2rem;
+			padding: 2.5rem 0;
+			border-bottom: 1px solid var(--tan);
+			text-decoration: none;
+			color: inherit;
+			transition: opacity 0.2s;
+		}
+		
+		.post-item:first-child { padding-top: 0; }
+		.post-item:hover { opacity: 0.7; }
+		
+		.post-meta {
+			display: flex;
+			flex-direction: column;
+			gap: 0.4rem;
+			padding-top: 0.3rem;
+		}
+		
+		.post-date {
+			font-size: 0.75rem;
+			letter-spacing: 0.1em;
+			text-transform: uppercase;
+			color: var(--sage);
+			font-weight: 500;
+		}
+		
+		.post-tag {
+			font-size: 0.72rem;
+			letter-spacing: 0.08em;
+			text-transform: uppercase;
+			color: var(--rust);
+			font-weight: 500;
+		}
+		
+		.post-body h2 {
+			font-family: 'Playfair Display', serif;
+			font-size: 1.4rem;
+			margin-bottom: 0.6rem;
+			line-height: 1.3;
+		}
+		
+		.post-body p {
+			font-size: 0.92rem;
+			line-height: 1.7;
+			opacity: 0.6;
+		}
+		
+		.read-more {
+			display: inline-block;
+			margin-top: 0.75rem;
+			font-size: 0.8rem;
+			font-weight: 500;
+			letter-spacing: 0.06em;
+			color: var(--rust);
+			text-transform: uppercase;
+		}
+		
+		/* EMPTY STATE */
+		.empty-state {
+			padding: 5rem 4rem;
+			text-align: center;
+			opacity: 0.5;
+		}
+		
+		.empty-state p {
+			font-family: 'Playfair Display', serif;
+			font-size: 1.3rem;
+			margin-bottom: 0.5rem;
+		}
+		
+		.empty-state span {
+			font-size: 0.9rem;
+		}
+		
+		footer {
+			border-top: 1px solid var(--tan);
+			padding: 2rem 4rem;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			font-size: 0.85rem;
+			opacity: 0.5;
+		}
+		
+		.cms-link {
+			color: var(--rust);
+			text-decoration: none;
+			font-weight: 500;
+		}
+		
+		@media (max-width: 768px) {
+			nav { padding: 1.2rem 1.5rem; }
+			nav ul { display: none; }
+			.page-header, .posts-list, footer { padding-left: 1.5rem; padding-right: 1.5rem; }
+			.post-item { grid-template-columns: 1fr; gap: 0.5rem; }
+			footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+		}
+	</style>
+</head>
+<body>
+
+<nav>
+	<a href="/" class="logo">The Journal</a>
+	<ul>
+		<li><a href="/">Home</a></li>
+		<li><a href="/blog" class="active">Blog</a></li>
+		<li><a href="/about">About</a></li>
+		<li><a href="/admin/" class="cms-link">CMS ↗</a></li>
+	</ul>
+</nav>
+
+<div class="page-header">
+	<h1>All Posts</h1>
+	<span class="post-count">3 entries</span>
+</div>
+
+<div class="posts-list">
+	
+	<a href="#" class="post-item">
+		<div class="post-meta">
+			<span class="post-date">Apr 28, 2026</span>
+			<span class="post-tag">Welcome</span>
+		</div>
+		<div class="post-body">
+			<h2>Welcome to Your New Site</h2>
+			<p>This is a sample post. Once you connect Netlify CMS, you can add, edit, and delete posts right from the browser.</p>
+			<span class="read-more">Read more →</span>
+		</div>
+	</a>
+	
+	<a href="#" class="post-item">
+		<div class="post-meta">
+			<span class="post-date">Apr 20, 2026</span>
+			<span class="post-tag">Guide</span>
+		</div>
+		<div class="post-body">
+			<h2>How Netlify CMS Works</h2>
+			<p>Netlify CMS stores your content as Markdown files in your Git repo. Every save creates a commit — version control built in.</p>
+			<span class="read-more">Read more →</span>
+		</div>
+	</a>
+	
+	<a href="#" class="post-item">
+		<div class="post-meta">
+			<span class="post-date">Apr 12, 2026</span>
+			<span class="post-tag">Guide</span>
+		</div>
+		<div class="post-body">
+			<h2>Deploying in Minutes</h2>
+			<p>Push this folder to GitHub, connect it to Netlify, enable Identity, and your CMS is live. No servers, no databases.</p>
+			<span class="read-more">Read more →</span>
+		</div>
+	</a>
+
+</div>
+
+<footer>
+	<span>© 2026 The Journal</span>
+	<a href="/admin/" class="cms-link">Manage Content →</a>
+</footer>
+
+</body>
+</html>

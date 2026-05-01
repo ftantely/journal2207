@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>About — The Journal</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+	<style>
+		*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+		
+		:root {
+			--ink: #1a1612;
+			--cream: #f5f0e8;
+			--rust: #c0533a;
+			--sage: #7a9e87;
+			--tan: #d9c9b0;
+		}
+		
+		body {
+			font-family: 'DM Sans', sans-serif;
+			background: var(--cream);
+			color: var(--ink);
+			min-height: 100vh;
+		}
+		
+		nav {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			padding: 1.5rem 4rem;
+			border-bottom: 1px solid var(--tan);
+		}
+		
+		.logo {
+			font-family: 'Playfair Display', serif;
+			font-size: 1.4rem;
+			font-weight: 700;
+			color: var(--ink);
+			text-decoration: none;
+		}
+		
+		nav ul {
+			list-style: none;
+			display: flex;
+			gap: 2.5rem;
+		}
+		
+		nav a {
+			text-decoration: none;
+			color: var(--ink);
+			font-size: 0.9rem;
+			font-weight: 500;
+			letter-spacing: 0.04em;
+			opacity: 0.7;
+			transition: opacity 0.2s;
+		}
+		
+		nav a:hover, nav a.active { opacity: 1; }
+		nav a.active { color: var(--rust); }
+		
+		/* LAYOUT */
+		.about-wrap {
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			min-height: calc(100vh - 73px - 69px);
+		}
+		
+		/* LEFT PANEL */
+		.about-visual {
+			background: var(--ink);
+			position: relative;
+			overflow: hidden;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			min-height: 400px;
+		}
+		
+		.about-visual::before {
+			content: '';
+			position: absolute;
+			width: 400px;
+			height: 400px;
+			border: 70px solid rgba(255,255,255,0.04);
+			border-radius: 50%;
+			top: -100px;
+			left: -100px;
+		}
+		
+		.about-visual::after {
+			content: '';
+			position: absolute;
+			width: 250px;
+			height: 250px;
+			border: 50px solid rgba(192,83,58,0.15);
+			border-radius: 50%;
+			bottom: -60px;
+			right: -60px;
+		}
+		
+		.monogram {
+			font-family: 'Playfair Display', serif;
+			font-size: 9rem;
+			color: rgba(255,255,255,0.06);
+			user-select: none;
+			position: relative;
+			z-index: 1;
+			line-height: 1;
+		}
+		
+		.about-badge {
+			position: absolute;
+			bottom: 2.5rem;
+			left: 2.5rem;
+			z-index: 2;
+		}
+		
+		.about-badge p {
+			font-size: 0.72rem;
+			letter-spacing: 0.15em;
+			text-transform: uppercase;
+			color: var(--rust);
+			font-weight: 500;
+			margin-bottom: 0.3rem;
+		}
+		
+		.about-badge span {
+			font-family: 'Playfair Display', serif;
+			font-size: 1.1rem;
+			color: rgba(255,255,255,0.7);
+		}
+		
+		/* RIGHT PANEL */
+		.about-content {
+			padding: 5rem 4rem;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+		}
+		
+		.section-tag {
+			font-size: 0.75rem;
+			letter-spacing: 0.15em;
+			text-transform: uppercase;
+			color: var(--rust);
+			font-weight: 500;
+			margin-bottom: 1.5rem;
+		}
+		
+		h1 {
+			font-family: 'Playfair Display', serif;
+			font-size: clamp(2rem, 3vw, 3rem);
+			line-height: 1.2;
+			margin-bottom: 2rem;
+		}
+		
+		.about-body p {
+			font-size: 1rem;
+			line-height: 1.8;
+			opacity: 0.65;
+			margin-bottom: 1.25rem;
+			max-width: 50ch;
+		}
+		
+		.divider {
+			width: 40px;
+			height: 2px;
+			background: var(--rust);
+			margin: 2rem 0;
+		}
+		
+		.stats {
+			display: flex;
+			gap: 3rem;
+		}
+		
+		.stat-item strong {
+			display: block;
+			font-family: 'Playfair Display', serif;
+			font-size: 2rem;
+			color: var(--ink);
+			line-height: 1;
+			margin-bottom: 0.3rem;
+		}
+		
+		.stat-item span {
+			font-size: 0.78rem;
+			letter-spacing: 0.1em;
+			text-transform: uppercase;
+			color: var(--sage);
+			font-weight: 500;
+		}
+		
+		.btn {
+			display: inline-block;
+			background: var(--rust);
+			color: white;
+			padding: 0.85rem 2rem;
+			border-radius: 2px;
+			text-decoration: none;
+			font-size: 0.9rem;
+			font-weight: 500;
+			letter-spacing: 0.04em;
+			transition: background 0.2s, transform 0.15s;
+			align-self: flex-start;
+			margin-top: 2.5rem;
+		}
+		
+		.btn:hover {
+			background: #a8432c;
+			transform: translateY(-1px);
+		}
+		
+		footer {
+			border-top: 1px solid var(--tan);
+			padding: 2rem 4rem;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			font-size: 0.85rem;
+			opacity: 0.5;
+		}
+		
+		.cms-link {
+			color: var(--rust);
+			text-decoration: none;
+			font-weight: 500;
+		}
+		
+		@media (max-width: 768px) {
+			nav { padding: 1.2rem 1.5rem; }
+			nav ul { display: none; }
+			.about-wrap { grid-template-columns: 1fr; }
+			.about-visual { min-height: 220px; }
+			.about-content { padding: 3rem 1.5rem; }
+			footer { padding: 1.5rem; flex-direction: column; gap: 0.5rem; text-align: center; }
+		}
+	</style>
+</head>
+<body>
+
+<nav>
+	<a href="/" class="logo">The Journal</a>
+	<ul>
+		<li><a href="/">Home</a></li>
+		<li><a href="/blog">Blog</a></li>
+		<li><a href="/about" class="active">About</a></li>
+		<li><a href="/admin/" class="cms-link">CMS ↗</a></li>
+	</ul>
+</nav>
+
+<div class="about-wrap">
+	
+	<div class="about-visual">
+		<span class="monogram">TJ</span>
+		<div class="about-badge">
+			<p>Est.</p>
+			<span>2026</span>
+		</div>
+	</div>
+	
+	<div class="about-content">
+		<p class="section-tag">Our Story</p>
+		<h1>A Place for Ideas Worth Writing Down</h1>
+		<div class="about-body">
+			<p>The Journal is a simple, clutter-free space for sharing thoughts, guides, and stories. No ads, no tracking — just writing.</p>
+			<p>Built with plain HTML and Netlify CMS, everything is version-controlled and editable directly from the browser. Fast to load, easy to maintain.</p>
+		</div>
+		<div class="divider"></div>
+		<div class="stats">
+			<div class="stat-item">
+				<strong>3</strong>
+				<span>Posts</span>
+			</div>
+			<div class="stat-item">
+				<strong>1</strong>
+				<span>Author</span>
+			</div>
+			<div class="stat-item">
+				<strong>2026</strong>
+				<span>Founded</span>
+			</div>
+		</div>
+		<a href="/blog" class="btn">Read the Blog →</a>
+	</div>
+
+</div>
+
+<footer>
+	<span>© 2026 The Journal</span>
+	<a href="/admin/" class="cms-link">Manage Content →</a>
+</footer>
+
+</body>
+</html>

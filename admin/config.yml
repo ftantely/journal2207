@@ -1,0 +1,32 @@
+backend:
+  name: git-gateway
+  branch: main # The branch to update (must already exist in your repo)
+
+# Uncomment below to enable editorial workflow (draft/review/publish stages)
+# publish_mode: editorial_workflow
+
+media_folder: "images/uploads" # Where uploaded images are stored in your repo
+public_folder: "/images/uploads" # The src attribute for uploaded media in your site
+
+collections:
+  - name: "blog" # Used in routes, e.g. /admin/collections/blog
+    label: "Blog Posts" # Label shown in the UI
+    folder: "_posts" # The folder where Markdown files are stored
+    create: true # Allow users to create new posts
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}" # Filename pattern
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Publish Date", name: "date", widget: "datetime" }
+      - { label: "Featured Image", name: "thumbnail", widget: "image" }
+      - { label: "Body", name: "body", widget: "markdown" }
+      - { label: "Tags", name: "tags", widget: "list", required: false }
+
+  - name: "pages"
+    label: "Pages"
+    files:
+      - label: "About Page"
+        name: "about"
+        file: "_data/about.md"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Body", name: "body", widget: "markdown" }

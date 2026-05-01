@@ -1,0 +1,17 @@
+# netlify.toml — Netlify build & redirect settings
+
+[build]
+  publish = "." # Serve from root (adjust if using a build tool)
+
+# Enable Netlify Identity widget on every page
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+
+# Optional: redirect /blog to your posts folder if using a static site generator
+# [[redirects]]
+#   from = "/blog"
+#   to = "/blog/index.html"
+#   status = 200
